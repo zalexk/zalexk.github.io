@@ -1,0 +1,24 @@
+logo:
+  icon: /images/icon.ico
+  title: ZalexK
+
+menubar:
+  items: []
+site_tree:
+  home:
+    sidebar: starter, welcome, recent
+  index_blog:
+    sidebar: starter, welcome, recent
+  index_topic:
+    menu_id: topic
+  topic:
+    menu_id: topic
+
+article:
+  share: [link]
+
+style:
+  border-radius:
+    bar: 4px
+    card: 4px
+    block: 4px
