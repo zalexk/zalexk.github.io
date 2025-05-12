@@ -4,7 +4,7 @@
 
 # Site
 title: ZalexK
-subtitle: '現屆中六香港學生'
+subtitle: '現屆 DSE 畢業生'
 favicon: '/images/icon.ico'
 description: ''
 keywords:
@@ -14,8 +14,8 @@ timezone: 'Asia/Hong_Kong'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
-permalink: :lang/:year/:month/:day/:title/
+url: http://zalexk.github.io
+permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -42,6 +42,9 @@ external_link:
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js

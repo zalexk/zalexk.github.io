@@ -16,6 +16,7 @@ site_tree:
 
 article:
   share: [link]
+  auto_cover: false
 
 style:
   border-radius:
