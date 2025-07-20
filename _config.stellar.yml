@@ -2,12 +2,13 @@ logo:
   icon: /images/icon.ico
   title: ZalexK
 
+preconnect:
+  - https://fonts.gstatic.com
+  - https://fonts.googleapis.com
+
 inject:
   head:
-    - <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
-  script:
-
-
+    - <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
 menubar:
   items: []
 site_tree:
@@ -25,11 +26,18 @@ article:
   auto_cover: false
 
 style:
-  border-radius:
-    bar: 4px
-    card: 4px
-    block: 4px
+  text-align: justify
+
+  smooth_scroll: false
+
+  codeblock:
+    scrollbar: 0px
+
+  font-size:
+    body: 1rem
 
   font-family:
-    body: '"Noto Serif SC", "Microsoft Yahei",..., sans-serif'
-
+    logo: '"LXGW WenKai TC", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+    body: '"LXGW WenKai TC", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+    code: '"LXGW WenKai Mono TC", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
+    codeblock: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
