@@ -2,6 +2,12 @@ logo:
   icon: /images/icon.ico
   title: ZalexK
 
+inject:
+  head:
+    - <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  script:
+
+
 menubar:
   items: []
 site_tree:
@@ -23,3 +29,7 @@ style:
     bar: 4px
     card: 4px
     block: 4px
+
+  font-family:
+    body: '"Noto Serif SC", "Microsoft Yahei",..., sans-serif'
+

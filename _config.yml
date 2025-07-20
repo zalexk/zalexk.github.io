@@ -101,6 +101,11 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: stellar
+analytics:
+    microsoft_clarity:
+        enable: true
+        project_id: rergjzgfa0
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
