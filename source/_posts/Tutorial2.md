@@ -5,7 +5,8 @@ updated: '2025-09-11 23:30:48'
 permalink: /post/tutorial-zvjlv1.html
 comments: true
 toc: true
-published: false
+published: true
+mathjax: true
 ---
 
 
