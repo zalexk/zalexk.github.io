@@ -6,6 +6,7 @@ permalink: /post/midterm-revision-z1g8gg9.html
 comments: true
 toc: true
 mathjax: true
+publish: false
 ---
 
 
