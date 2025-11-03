@@ -5,6 +5,7 @@ updated: '2025-11-03 23:57:56'
 permalink: /post/midterm-revision-z1g8gg9.html
 comments: true
 toc: true
+mathjax: true
 ---
 
 
