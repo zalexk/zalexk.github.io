@@ -1,15 +1,14 @@
 ---
 title: Mid-Term Revision
 date: '2025-11-03 21:43:23'
-updated: '2025-11-03 23:57:56'
+updated: '2026-01-14 00:52:15'
 permalink: /post/midterm-revision-z1g8gg9.html
-comments: true
-toc: true
+mathjax: true
 ---
 
 
 
-# Revision
+# Mid-Term Revision
 
 ## Ch.1 Fundamental Concepts
 
