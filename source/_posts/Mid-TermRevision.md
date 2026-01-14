@@ -4,6 +4,7 @@ date: '2025-11-03 21:43:23'
 updated: '2026-01-14 00:52:15'
 permalink: /post/midterm-revision-z1g8gg9.html
 mathjax: true
+published: false
 ---
 
 
@@ -24,7 +25,7 @@ mathjax: true
 ### Probabilities
 
 1. If $A_1, A_2, A_3, ...$ are mutually exclusive,   
-   ​$P(A_1 \cup A_2 \cup ...) = P(A_1) + P(A_2) + ...$
+   $P(A_1 \cup A_2 \cup ...) = P(A_1) + P(A_2) + ...$
 2. **Inclusion Exclusion Formula :**
 
    1. $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
@@ -39,7 +40,7 @@ mathjax: true
 
 1. $P(B|A) = \frac{P(B\cap A)}{P(A)}$
 2. If $B$ and $C$ is mutually exclusive,  
-   ​$P(B \cup C|A) = P(B|A) + P(C|A)$
+   $P(B \cup C|A) = P(B|A) + P(C|A)$
 3. $P(B'|A) = 1 - P(B|A)$
 4. $P(A\cap B) = P(B|A) P(A) = P(A|B) P(B)$
 
@@ -178,7 +179,7 @@ $\int^{\pi _p}_{-\infty} f(x) dx = p$
     $$
     \begin{align*}
     \Gamma (t) &= \int_0^\infty y^{t-1} e^{-y} dy , \quad t>0\\
-
+    
     &= \begin{cases}
     1 \quad &t=1\\
     (t-1)! &t\in \mathbb Z^+
@@ -325,7 +326,7 @@ $$
 
 1. $X\sim N(\mu_X, \sigma^2_X)$ and $Y\sim N(\mu_Y, \sigma^2_Y)$
 2. $X|Y = y\sim N[\mu_X + \rho \frac{\sigma_X}{\sigma_Y} (y-\mu_Y), \sigma^2_X (1-\rho^2)]$  
-   ​$Y|X = x\sim N[\mu_Y + \rho \frac{\sigma_Y}{\sigma_X} (x-\mu_X), \sigma^2_Y (1-\rho^2)]$
+   $Y|X = x\sim N[\mu_Y + \rho \frac{\sigma_Y}{\sigma_X} (x-\mu_X), \sigma^2_Y (1-\rho^2)]$
 3. $Corr(X,Y) = \rho$
 4. If $\rho = 0$, $X$ and $Y$ are independent
 5. $aX + bY \sim N(a\mu_X + b\mu_Y, a^2 \sigma^2_X + 2ab\rho \sigma_X \sigma_Y + b^2 \sigma^2_Y)$
