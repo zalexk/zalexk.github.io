@@ -41,3 +41,13 @@ style:
     body: '"LXGW WenKai TC", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
     code: '"LXGW WenKai Mono TC", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
     codeblock: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
+
+# 文章搜索
+search:
+  service: local_search # local_search, todo...
+  local_search:
+    field: all # post, page, all
+    path: /search.json # 搜索文件存放位置
+    content: true # 是否搜索内容
+    skip_search: [] # 指定 path 中的内容不被搜索。
+    codeblock: true # 是否搜索代码块（需要content: true)
