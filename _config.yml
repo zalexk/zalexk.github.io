@@ -107,6 +107,14 @@ analytics:
         project_id: rergjzgfa0
 
 
+# RSS feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 0 # 最大文章數量
+  content: true # 是否顯示內文
+
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:

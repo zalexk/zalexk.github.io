@@ -1,8 +1,31 @@
+# --- OS ---
 .DS_Store
 Thumbs.db
-db.json
-*.log
+desktop.ini
+
+# --- IDE/Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Dependencies ---
 node_modules/
+
+# --- Build output ---
 public/
 .deploy*/
+
+# --- Hexo ---
+db.json
+*.log
 _multiconfig.yml
+
+# --- Environment ---
+.env
+.env.local
+
+# --- Misc ---
+*.tgz
+.nyc_output/
