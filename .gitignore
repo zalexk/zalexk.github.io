@@ -19,6 +19,8 @@ public/
 
 # --- Hexo ---
 db.json
+blogInfoList.json
+data/
 *.log
 _multiconfig.yml
 
@@ -29,3 +31,6 @@ _multiconfig.yml
 # --- Misc ---
 *.tgz
 .nyc_output/
+
+# --- Vibe-coding ---
+/.claude

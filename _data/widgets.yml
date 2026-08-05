@@ -1,7 +1,0 @@
-recent:
-  layout: recent
-  rss: # /atom.xml # npm i hexo-generator-feed
-  limit: 5 # Count of posts
-
-rss:
-  layout: recent
