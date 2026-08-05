@@ -32,7 +32,7 @@ tags: 週報
 
 [醫學博物館](“https://www.discoverhongkong.com/hk-tc/place-to-go/museum-of-medical-sciences.html”)前身是香港第一所的細菌學檢驗所，地下（G/F）就是一些展覽，展出一些慢性病和傳染病的信息，其中一個展廳是沙士病毒的展覽，裡面有參與醫生的口述史，值得一聽。另外還有一個展廳展覽的是香港的公共衛生史，從殖民地政府忽略華人的醫療需求，再到因為鼠疫逼迫當時港英政府專門為華人提供醫院，感覺也是港英政府治理香港心態變化的一個縮影——即從不管不顧，由民間自行解決，再到引起民憤，才開始建立治理體係。
 
-![sphygmograph](sphygmograph.jpg)
+![sphygmograph](weekly-01/sphygmograph.jpg)
 
 這個脈搏儀算是比較震撼的展品，放大脈搏的震動，用鉛筆來畫脈搏的跳動，真的非常奇妙。
 

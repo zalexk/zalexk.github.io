@@ -30,7 +30,7 @@ tags: 週報
 
 這本是因為微信讀書有一個借閱7天的安排，讓我瘋狂趕 deadline 去看完這本書，否則我應該沒有這麼大的動力去看。我考完 DSE 那天去借了兩本，到現在都沒看完。這個功能也可以一窺微信讀書團隊的一些小心思，通過這樣的安排，其實可以使在知識平權和商業化的天平上取得平衡，同時也可以逼迫用戶去主動看書，確實是一個不錯的功能。
 
-![The Four-Categorization of the Mechanism for College Students' Career Paths](Four-Categorization.png)
+![The Four-Categorization of the Mechanism for College Students' Career Paths](weekly-03/Four-Categorization.png)
 
 這張圖片可以算作是這本書的一個總結了，在大學最重要就是有目標（目標掌控模式），且要想這個目標衝刺，比如你想考研就要衝 GPA，如果你要打工就要攢實習經歷、豐富簡歷，最忌諱的就是漫無目標（迷失無從者），不參加活動，還聽信別人說大學成績不重要的謠言，結果到了畢業季兩頭不到岸，考研不行，去社會求職也不得 HR 的青睞。
 

@@ -11,13 +11,13 @@ published: false
 
 这次应该是我自中四北京交流团后，时隔两年，再次踏上飞机。我对机场倒不怎么陌生，事缘我中五有幸来到了机场内部参观，走进禁区，第一次踏上机坪，望着一架又一架的飞机滑行。
 
-![airport_macroview](airport_macroview.jpg)
+![airport_macroview](grad-trip/airport_macroview.jpg)
 
-![airport_building](airport_building.jpg)
+![airport_building](grad-trip/airport_building.jpg)
 
-![airport_CASL](airport_CASL.jpg)
+![airport_CASL](grad-trip/airport_CASL.jpg)
 
-![airport_aircraft_departure](airport_aircraft_departure.jpg)
+![airport_aircraft_departure](grad-trip/airport_aircraft_departure.jpg)
 
 （圖片攝於中五時的機場參觀）
 
@@ -29,7 +29,7 @@ published: false
 
 這次飞往吉隆坡的旅途，在台风「蝴蝶」的阴霾下注定是不平凡的，原本大概3小时多点的航程为了绕飞台风，比往常多花费了一小时，不過出乎我意料之外的是，路上並沒有什麼顛簸，而窗外的天氣伴隨著陽光，依舊那麼明朗。
 
-![Screenshot_veryzhun.vzcom.jpg](Screenshot_veryzhun.vzcom.jpg)
+![Screenshot_veryzhun.vzcom.jpg](grad-trip/Screenshot_veryzhun.vzcom.jpg)
 
 踏上廊桥的那刻，是我第一次到达异国的土地。到了航站樓，望著熙熙攘攘的人流，置身於英文、馬來語夾雜的環境，心中卻無當初想象中的那麼不適，或許是因為在英中上學的緣故，即便到了用英文溝通的場景，我也沒有那種不適和不安。
 
@@ -45,7 +45,7 @@ published: false
 
 簡單休整一下，就徒步前往雙子塔。距離不算遠，只不過因為不熟路而繞了遠路。初來乍到，吉隆坡交通給我的印象就有一種混亂，雖說有紅綠燈，但是無論是車輛還是行人都不遵從，即使是核心區依舊如此。另外就是不合理的紅綠燈設計，綠燈時間太短，往往一個大路口就只有20多秒，也就勉強走到的程度，後來者就真的要跑過去了，這也怪不得為啥沒人遵守紅綠燈。
 
-![KL Tower](KL-Tower.jpg)
+![KL Tower](grad-trip/KL-Tower.jpg)
 
 (吉隆坡塔)
 
