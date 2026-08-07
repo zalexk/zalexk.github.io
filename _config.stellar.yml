@@ -9,13 +9,11 @@ preconnect:
 inject:
   head:
     - <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
-menubar:
-  items: []
+
+      
 site_tree:
   home:
-    sidebar: starter, welcome, recent
-  index_blog:
-    sidebar: starter, welcome, recent
+    leftbar: recent
   index_topic:
     menu_id: topic
   topic:

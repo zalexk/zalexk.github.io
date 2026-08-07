@@ -34,3 +34,5 @@ _multiconfig.yml
 
 # --- Vibe-coding ---
 /.claude
+AGENTS.md
+theme-user-guide.md
