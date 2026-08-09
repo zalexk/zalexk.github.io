@@ -14,13 +14,13 @@ mathjax: true
 > 我会跳过一些我会的内容，例如 pandas 的基础操作
 
 ## 清洗数据和预处理 Data Cleaning & Preprocessing
-做数据建模，我们首先要清洗一下数据，减少 noise data 来影响模型的质量，例如一些缺失值 missing value
-最基础的方法就是删掉缺失值，通常是用 pandas 的 `dropna` 功能
-之后清洗完数据后，就要找 prediction target （也就是预测值）和 特征 features，特征值在数据建模是非常重要的因素，选取好的特征值可以提高模型的准确度
+做数据建模，我们首先要清洗一下数据，减少 noise data 来影响模型的质量，例如一些缺失值 missing value。最常用的方法就是用 pandas 的 `dropna` 功能来删掉缺失值。
 
-以 [Housing Prices Competition for Kaggle Learn Users](https://www.kaggle.com/competitions/home-data-for-ml-course/data) 为例，我们首先要了解我们的任务是啥，根据 Overview 所说，我们要预测房价
-之后我们要 [Data 选项卡](https://www.kaggle.com/competitions/home-data-for-ml-course/data) 中的 `data_description.txt` ，来了解每个 column 代表什么意思，以及它的值是什么类型，例如说是 int、float 或者是 str
-之后就要来思考到底哪些 column 是跟房价有关
+之后清洗完数据后，就要找 prediction target （也就是预测值）和 特征 features，特征值在数据建模是非常重要的因素，选取好的特征值可以提高模型的准确度。
+
+以 [Housing Prices Competition for Kaggle Learn Users](https://www.kaggle.com/competitions/home-data-for-ml-course/data) 为例，我们首先要了解我们的任务是啥——根据 Overview 所说，我们要预测房价，这就是我们的任务。
+
+之后我们要阅读 [Data 选项卡](https://www.kaggle.com/competitions/home-data-for-ml-course/data) 中的 `data_description.txt` ，来了解每个 column 代表什么意思，以及它的值是什么类型，例如说是 int、float 或者是 str，之后就要来思考到底哪些 column 是跟房价有关。
 
 ```python
 # ===数据准备===
@@ -75,7 +75,7 @@ prediction = model.predict(X)
 print(y) # 验证一下预测效果
 print(f"\n预测的 Sales Price: {prediction}")
 ```
-其中，`random_state` 是控制算法的随机种子：$\text{random\_state} \in \{x \in \mathbb{Z} \mid 0 \le x \le 2^{32} - 1\}$（可见[文档](https://scikit-learn.org/stable/glossary.html#term-random_state)）
+其中，`random_state` 是控制算法的随机种子：$\text{random\_state} \in \\{x \in \mathbb{Z} \mid 0 \le x \le 2^{32} - 1\\}$（可见[文档](https://scikit-learn.org/stable/glossary.html#term-random_state)）
 固定 `random_state` 可以保证每次运行代码，产生的随机结果（也就是模型本身）是一致的。
 
 ## 模型验证
