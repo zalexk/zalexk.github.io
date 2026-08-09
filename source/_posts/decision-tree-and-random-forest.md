@@ -1,5 +1,6 @@
 ---
 title: Intro to Machine Learning - Decision Tree 决策树 & Random Forest 随机森林
+date: 2026-8-7
 tags: [Machine Learning, Kaggle, Python]
 mermaid: true
 type: tech
