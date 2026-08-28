@@ -31,8 +31,12 @@ _multiconfig.yml
 # --- Misc ---
 *.tgz
 .nyc_output/
+.workbuddy/
 
 # --- Vibe-coding ---
 /.claude
 AGENTS.md
 theme-user-guide.md
+
+# --- Docs ---
+hexo-theme-stellar-docs/
