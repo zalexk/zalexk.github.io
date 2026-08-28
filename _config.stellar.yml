@@ -11,6 +11,9 @@ inject:
     - <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
 
       
+plugins:
+  scrollreveal:
+    enable: false # 关闭滚动入场动画：其 matrix3d transform 在旧版 Chromium 渲染成白色卡块
 site_tree:
   home:
     leftbar: recent
