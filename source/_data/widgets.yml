@@ -2,3 +2,5 @@ recent:
   layout: recent
   rss: /atom.xml # 启用 RSS 按钮
   limit: 5
+ghuser:
+  username: Zalexk
