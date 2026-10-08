@@ -2,6 +2,7 @@
 title: DSE 放榜記
 date: 2025-07-21 00:28:40
 tags: [生活, HKDSE]
+categories: [生活]
 ---
 > 聊聊關於 HKDSE 放榜日前後的心路歷程
 <!-- more -->

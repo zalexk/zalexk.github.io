@@ -1,54 +1,17 @@
-logo:
-  icon: /images/icon.ico
-  title: ZalexK
+# Stellar v2 主题配置（2026-10-08 迁移，同日改为「跟随最新版默认 UI」策略）
+# 原则：只覆盖站点身份与内容必需项，其余全部继承 node_modules/hexo-theme-stellar/_config.yml 默认值。
+# v2 默认：左栏七项菜单（博客/分类/标签/专栏/归档/友链/关于）、card 外观预设、reveal 动画开、系统字体。
 
-preconnect:
-  - https://fonts.gstatic.com
-  - https://fonts.googleapis.com
+# 左栏品牌（站点身份；name 为 null 时自动继承 Hexo title「ZalexK」）
+leftbar:
+  brand:
+    image:
+      src: /images/icon.ico
+      variant: icon
 
-inject:
-  head:
-    - <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
-
-      
-plugins:
-  scrollreveal:
-    enable: false # 关闭滚动入场动画：其 matrix3d transform 在旧版 Chromium 渲染成白色卡块
-site_tree:
-  home:
-    leftbar: recent
-  index_topic:
-    menu_id: topic
-  topic:
-    menu_id: topic
-
-article:
-  share: [link]
-  auto_cover: false
-
-style:
-  text-align: justify
-
-  smooth_scroll: false
-
-  codeblock:
-    scrollbar: 0px
-
-  font-size:
-    body: 1rem
-
-  font-family:
-    logo: '"LXGW WenKai TC", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
-    body: '"LXGW WenKai TC", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
-    code: '"LXGW WenKai Mono TC", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
-    codeblock: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
-
-# 文章搜索
-search:
-  service: local_search # local_search, todo...
-  local_search:
-    field: all # post, page, all
-    path: /search.json # 搜索文件存放位置
-    content: true # 是否搜索内容
-    skip_search: [] # 指定 path 中的内容不被搜索。
-    codeblock: true # 是否搜索代码块（需要content: true)
+# 内容必需：文章里的公式与 Mermaid 图表（页面级 render.math / render.diagrams 引用）
+features:
+  math:
+    provider: mathjax
+  diagrams:
+    provider: mermaid

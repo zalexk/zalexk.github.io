@@ -2,9 +2,12 @@
 title: Intro to Machine Learning - Decision Tree 决策树 & Random Forest 随机森林
 date: 2026-8-7
 tags: [Machine Learning, Kaggle, Python]
-mermaid: true
-type: tech
-mathjax: true
+categories: [Machine Learning]
+article:
+  style: tech # v1 顶层 type: tech
+render:
+  math: mathjax # v1 mathjax: true
+  diagrams: mermaid # v1 mermaid: true（hexo-filter-mermaid-diagrams 插件已移除，改用主题原生渲染）
 ---
 
 > Kaggle Intro to Machine Learning 课程笔记：从数据清洗与特征选取开始，用 sklearn 建立决策树模型，以 MAE 验证预测误差、区分训练集与验证集，最后比较过拟合／欠拟合，并引入更准确的随机森林算法。

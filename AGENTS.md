@@ -2,36 +2,37 @@
 
 ## Project Overview
 
-Personal static blog **ZalexK** (`zalexk.github.io`), built with [Hexo](https://hexo.io) 7.3.0 and the [Stellar](https://github.com/xaoxuu/hexo-theme-stellar) theme. Content is written in **Traditional Chinese** (site language `zh-TW`, timezone `Asia/Hong_Kong`); posts are personal life writing (週報 weekly series, trip notes) plus coding/machine-learning notes. Deployment is GitHub Actions → GitHub Pages on push to `main`.
+Personal static blog **ZalexK** (`zalexk.github.io`), built with [Hexo](https://hexo.io) 8.1.2 and the [Stellar](https://github.com/xaoxuu/hexo-theme-stellar) **v2.0.0** theme (installed as the npm package `hexo-theme-stellar`). Content is written in **Traditional Chinese** (site language `zh-TW`, timezone `Asia/Hong_Kong`); posts are personal life writing (週報 weekly series, trip notes) plus coding/machine-learning notes. Deployment is GitHub Actions → GitHub Pages on push to `main`.
+
+> 2026-10-08: migrated from Stellar 1.44.0 (git submodule) to Stellar v2.0.0 (npm) following https://xaoxuu.com/wiki/stellar/migration/v1-to-v2/ . The `themes/stellar` submodule and `.gitmodules` were removed; rollback = `git revert` of that commit.
 
 ## Architecture & Data Flow
 
 ```
 source/ (markdown content + _data YAML)
   + _config.yml, _config.stellar.yml (site + theme config)
-  + themes/stellar/ (git submodule — theme source)
+  + node_modules/hexo-theme-stellar (npm package — theme source)
         │  hexo generate (npm run build; hexo-* plugins incl. hexo-pro auto-load)
         ▼
   public/ (static site, gitignored) ──► GH Actions Pages workflow ──► github.io
 ```
 
 - **Build pipeline**: `hexo generate` renders `source/` → `public/`, caching to `db.json` (warehouse, gitignored). `scripts/asset-path.js` runs a `before_post_render` filter that strips a `<slug>/` prefix from markdown image paths so local editors preview assets correctly.
-- **hexo-pro admin layer** (commercial plugin, installed v1.2.10 / manifest `^1.0.14`): mounts an admin SPA at `/pro` and a JWT-protected REST API at `hexopro/api/*`. Runtime state (NeDB `data/*.db`, `blogInfoList.json` Fuse.js index) is gitignored and disposable.
-- **Theme stack** (Stellar, three layers): Node-side `scripts/` (47 tag plugins: note/tabs/timeline/gallery/ghcard…; helpers, generators for topic/wiki/search/404/author; filters, events) → EJS layouts (`layout/`, injected globals `ctx`/`def`/`utils`) → client JS (`source/js/main.js` + `services/`/`search/`/`plugins/`) and Stylus (`source/css/main.styl` → `/css/main.css`).
-- **Config precedence**: Hexo reads `source/_data/` only (root `_data/` does not exist). Theme config = theme defaults ← `_config.stellar.yml` ← widget merge from `source/_data/widgets.yml`.
+- **hexo-pro admin layer** (commercial plugin, v2.0.0): mounts an admin SPA at `/pro` and a JWT-protected REST API. Runtime state (NeDB `data/*.db`, `blogInfoList.json` Fuse.js index) is gitignored and disposable.
+- **Theme stack** (Stellar v2): Node-side `scripts/` (tag plugins, generators, **schema validation** in `scripts/schema/` — every config/front-matter field is validated at build time and unknown/invalid values produce `已忽略 N 项不支持的配置` warnings) → EJS layouts → client **Runtime** (`source/js/runtime/` — extensions like `diagrams`/`math`/`lightbox` load on demand, driven by a JSON registry embedded in each page with `"when": {"selector": …}` conditions).
+- **Config precedence**: theme defaults (`node_modules/hexo-theme-stellar/_config.yml` — the authoritative v2 field reference) ← `_config.stellar.yml` (same structure, arrays replace wholesale) ← widget deep-merge from `source/_data/widgets.yml`.
 
 ## Key Directories
 
 |Path|Purpose|
 |---|---|
-|`source/_posts/`|Blog posts + same-named asset folders (`post_asset_folder: true`). 6 posts: `weekly-01..03.md` (週報), `grad-trip.md` (draft), `DSE-release.md`, `decision-tree-and-random-forest.md`.|
-|`source/_data/`|Effective site data: `widgets.yml` (single `recent` widget, `rss: /atom.xml`, `limit: 5`) and `notebooks/*.yaml` (`machine-learning.yaml`, `python.yaml` — notebook declarations with `base_dir` URL roots and `menu_id: notebooks`).|
-|`source/images/`|Favicons + notebook icons (`machine-learning.png`, `python.webp`).|
-|`themes/stellar/`|Theme git submodule (upstream, HEAD `aa4afd3e` v1.29.1, cloned 2025-05-12). Treat as vendored except the two dirty files below.|
-|`scaffolds/`|New-content templates: `post.md` (title/date/tags), `draft.md` (title/tags, no date), `page.md`.|
+|`source/_posts/`|Blog posts + same-named asset folders (`post_asset_folder: true`). Posts: `weekly-01..03.md` (週報), `DSE-release.md`, `Y1-review.md`, `DJI-240-7A-USB-C-Cable.md`, `decision-tree-and-random-forest.md` (ML notes, mermaid + mathjax). Drafts live in `source/_drafts/`.|
+|`source/_data/`|`widgets.yml` (widget library overrides: `recent` with `rss: /atom.xml`, `limit: 5`; `ghuser`). `caches/` (Stellar v2 Runtime image-metadata cache — gitignored, disposable).|
+|`source/images/`|Favicons.|
+|`scaffolds/`|New-content templates: `post.md`, `draft.md`, `page.md`.|
 |`scripts/`|`asset-path.js` — the only standalone script (see Architecture).|
 |`data/`, `db.json`, `blogInfoList.json`, `public/`|Runtime/build artifacts, all gitignored.|
-|`hexo-theme-stellar-docs/`, `theme-user-guide.md`|Untracked reference docs (Stellar theme wiki clone + personal guide).|
+|`hexo-theme-stellar-docs/`, `theme-user-guide.md`|Untracked reference docs (v1-era wiki clone + personal guide; **v2 docs are authoritative**: https://xaoxuu.com/wiki/stellar/).|
 
 ## Development Commands
 
@@ -40,69 +41,60 @@ source/ (markdown content + _data YAML)
 |`npm install`|Install deps (lockfile v3; npm ≥ 7).|
 |`npm run server`|`hexo server` — local preview at `http://localhost:4000`; hexo-pro admin at `/pro`.|
 |`npm run build`|`hexo generate` — renders site to `public/` (the QA gate).|
+|`npx hexo stellar doctor`|Stellar v2 config/schema check — **run after any theme-config change; must print PASS with no warnings**.|
 |`npm run clean`|`hexo clean` — wipes `db.json` + `public/`.|
 |`npm run deploy`|**Do not use.** `_config.yml` has `deploy.type: ''` — no deploy target. Real deploy is CI only.|
 
-Deployment: push to `main` → GitHub Actions: `actions/checkout@v4` (`submodules: recursive`) → `setup-node` (`node-version: "20"`; step name misleadingly says v22.15.0) → `npm install` → `npm run build` → `upload-pages-artifact@v3` (`./public`) → `deploy-pages@v4`. Dependabot runs daily for npm.
+Deployment: push to `main` → GitHub Actions: `actions/checkout@v4` (no submodules) → `setup-node` (`node-version: "22"` — Stellar v2 requires Node ≥ 22) → `npm install` → `npm run build` → `upload-pages-artifact@v3` (`./public`) → `deploy-pages@v4`. Dependabot runs daily for npm.
 
 ## Code Conventions & Common Patterns
 
 **Posts**
-- Front-matter: `title`, `date` (`YYYY-MM-DD HH:mm:ss`), `tags` (scalar `週報` or YAML list `[生活, HKDSE]` — both occur). Drafts: `published: false` (see `grad-trip.md`). The ML post also uses Stellar keys `mermaid: true`, `type: tech` (requires the `hexo-filter-mermaid-diagrams` dep).
+- Front-matter: `title`, `date` (`YYYY-MM-DD HH:mm:ss`), `tags` (scalar `週報` or YAML list `[生活, HKDSE]` — both occur). Drafts: `published: false` in `source/_drafts/`.
+- Stellar v2 front-matter keys: `render: {math: mathjax, diagrams: mermaid}` (per-page math/diagrams; requires global `features.math.provider` / `features.diagrams.provider` in `_config.stellar.yml`), `article: {style: tech}` (v1 legacy `type: tech` also works via alias but new syntax is preferred). v1 keys `mermaid: true` / `mathjax: true` / `menu_id` etc. have legacy aliases in `content-config-schema.js` but should be converted on sight.
 - Excerpts: `> **摘要**` blockquote followed by `<!-- more -->` cut. No `excerpt:` key.
-- Post images: referenced with slug-prefixed paths (`![sphygmograph](weekly-01/sphygmograph.jpg)`); `scripts/asset-path.js` strips the prefix at build so local editors preview correctly. Asset folders may be empty (e.g. `weekly-02/`).
+- Post images: referenced with slug-prefixed paths (`![sphygmograph](weekly-01/sphygmograph.jpg)`); `scripts/asset-path.js` strips the prefix at build so local editors preview correctly.
+- **Mermaid**: plain ` ```mermaid ` fences (no tag plugin). `_config.yml` sets `highlight.exclude_languages: [mermaid]` so the fence renders as `<code class="mermaid">`, which the v2 Runtime diagrams extension picks up via its `.mermaid` selector. Do not re-add `hexo-filter-mermaid-diagrams` (double rendering).
 
-**Converting Obsidian notes → repo markdown** (see `source/_posts/decision-tree-and-random-forest.md` for a worked example):
-1. **Normalize to standard markdown first**: Obsidian callouts → GitHub alert syntax — uppercase type (`[!NOTE]`/`[!TIP]`/`[!IMPORTANT]`/`[!WARNING]`/`[!CAUTION]`), space after `>`, title moved to a bold line inside the body, list lines get a space after `>`. Fix malformed `![warning]` (image syntax) → `[!WARNING]`. Code fences: ` ``` python ` → ` ```python `. Footnotes (`[^1]`) and mermaid are already standard GFM — leave them.
-2. **Then convert GitHub alerts → Stellar tag plugins** (the theme does NOT render GitHub alert syntax). Short single-line content → inline `{% note %}`; multi-line/list content → `{% box %}` container (`note` is implemented on `box`, same style — see `hexo-theme-stellar-docs/tag-plugins/express.md` + `container.md`):
-   - `{% note [title] content [color:color] %}` — title cannot contain spaces (use `&nbsp;`)
-   - `{% box [title] [color:color] %}...{% endbox %}`
+**Converting Obsidian notes → repo markdown** (same two-step as v1; still valid in v2):
+1. Normalize Obsidian callouts → GitHub alert syntax, then
+2. Convert GitHub alerts → Stellar tag plugins (`note`/`box` both exist in v2): short single-line → `{% note color:blue %}`, multi-line → `{% box color:blue %}…{% endbox %}`. `[!NOTE]`→blue, `[!TIP]`→green, `[!IMPORTANT]`→purple, `[!WARNING]`→yellow, `[!CAUTION]`→red. `{% note %}` title cannot contain spaces (use `&nbsp;`).
 
-   | GitHub alert | Stellar equivalent |
-   |---|---|
-   | `[!NOTE]` (blue) | `{% note color:blue %}` / `{% box color:blue %}` |
-   | `[!TIP]` (green) | `{% note color:green %}` |
-   | `[!IMPORTANT]` (purple) | `{% note color:purple %}` |
-   | `[!WARNING]` (yellow) | `{% note color:yellow %}` (alias `color:warning`) |
-   | `[!CAUTION]` (red) | `{% note color:red %}` (alias `color:error`) |
+**Theme customization (Stellar v2)** — `_config.stellar.yml` mirrors the default config tree in `node_modules/hexo-theme-stellar/_config.yml`. **Policy (2026-10-08): follow the theme's latest defaults for all UI; only override site identity and content necessities.**
+1. Current overrides are intentionally minimal: `leftbar.brand.image` (site icon; `name` inherits Hexo title) and `features.math/diagrams` providers (mathjax/mermaid, required by post front matter).
+2. Everything else (7-item default menu, card preset, reveal animation, system fonts, search, share buttons) comes from theme defaults — do not re-add v1-look overrides (empty menu, LXGW font, justify) unless the user asks.
+3. `source/_data/widgets.yml` deep-merges over the theme widget library (`node_modules/hexo-theme-stellar/_data/widgets.yml`).
+- URL structure (v2 default style): home `/` is the post list (hexo-generator-index at `''`, default menu item `網誌`), categories `/blog/categories/`, tags `/blog/tags/`, archives `/blog/archives/` (hexo `category_dir`/`tag_dir`/`archive_dir` are set to `blog/*`), plus source pages `/about/` and `/friends/`. `/topic/` is in the default menu but 404s until topic (专栏) content exists — the theme only generates its index when topics are present. `/settings/` is auto-generated by the theme.
 
-**Theme customization (Stellar)** — correct surfaces, in order:
-1. `_config.stellar.yml` (site root) — overrides: `logo`, `preconnect`/`inject.head` (LXGW WenKai TC fonts), `site_tree` (sidebar: `recent`, `nav_tabs` `笔记: /notebooks/`), `style` (justified text, font families), `search` (local_search over `/search.json`, generated by `themes/stellar/scripts/generators/search.js`).
-2. `source/_data/widgets.yml` — deep-merged over the theme widget library; `null` value deletes a widget, object deep-merges.
-3. Theme JS services (`themes/stellar/source/js/services/*.js`): run inside `utils.jq(() => { $(function(){…}) })`, read per-element config from DOM attributes, use injected globals `ctx`/`def`/`utils`.
-
-**Never edit under `themes/stellar/`** (upstream; clobbered by `git submodule update`) except the two already-dirty files: `themes/stellar/_config.yml` (appended `feed:` block — atom.xml, limit 0) and `themes/stellar/_data/widgets.yml` (`recent.rss: /atom.xml`, `ghuser.username: Zalexk`). Ideally re-home these to site config and revert the submodule.
+**Never edit `node_modules/`** — the theme ships as an npm package; all overrides go through `_config.stellar.yml` / `_data`.
 
 ## Important Files
 
 |File|Role|
 |---|---|
-|`_config.yml`|Site config: `url: http://zalexk.github.io` (http, not https), `permalink: :year/:month/:day/:title/`, `post_asset_folder: true`, `new_post_name: :title.md`, highlight.js, atom feed, Microsoft Clarity (`rergjzgfa0`).|
-|`_config.stellar.yml`|Theme overrides (fonts, sidebar `site_tree`, style, local_search).|
-|`package.json`|Scripts (build/clean/deploy/server) + 12 deps: hexo `^7.3.0`, hexo-pro `^1.0.14`, generators archive/category/feed/index/tag, renderers ejs/marked/stylus, hexo-server, hexo-filter-mermaid-diagrams `^1.0.5`, hexo-theme-stellar `^1.33.1` (npm dep redundant — submodule wins). No `devDependencies`.|
-|`.gitmodules`|Submodule: `themes/stellar` ← `xaoxuu/hexo-theme-stellar`, no branch pin.|
-|`.github/workflows/pages.yml`|The only deploy path.|
-|`source/_data/widgets.yml`|Effective widget config (single `recent` widget).|
-|`source/_data/notebooks/*.yaml`|Notebook declarations (machine-learning, python).|
+|`_config.yml`|Site config: `url: http://zalexk.github.io`, `permalink: :year/:month/:day/:title/`, `post_asset_folder: true`, highlight.js with `exclude_languages: [mermaid]`, atom feed (`hexo-generator-feed ^4`), Microsoft Clarity.|
+|`_config.stellar.yml`|Stellar v2 overrides — minimal by policy: brand icon + math/diagrams providers only; everything else follows theme defaults.|
+|`package.json`|Scripts + deps: hexo `^8.0.0`, hexo-pro `^2.0.0`, hexo-generator-feed `^4.0.0`, hexo-theme-stellar `^2.0.0`, generators, renderers, hexo-server. No `hexo-filter-mermaid-diagrams`, no `pi-tool-display` (removed 2026-10-08 — it was an unrelated coding-agent TUI package).|
+|`.github/workflows/pages.yml`|The only deploy path (Node 22, no submodules).|
+|`source/_data/widgets.yml`|Widget overrides (`recent`, `ghuser`).|
 |`scripts/asset-path.js`|Hexo `before_post_render` filter for local-editor image preview.|
-|`scaffolds/post.md`|New-post template: `title` / `date` / `tags`.|
+|`scaffolds/post.md`|New-post template.|
 
 ## Runtime/Tooling Preferences
 
-- **Runtime**: Node.js — CI pins Node 20 (workflow `setup-node`); local dev is Node 24.16.0 / npm 11.13.0. No `engines`/`packageManager` fields; npm is the package manager (lockfile v3).
-- **Theme checkout**: always with submodules (`git clone --recurse-submodules` or `git submodule update --init --recursive`) — CI does this automatically.
+- **Runtime**: Node.js ≥ 22 required (Stellar v2 engines). CI pins Node 22; local dev runs 22.22.2 / 24.16.0.
 - **hexo-pro**: auto-loads as a plugin; no config section needed. Beware its admin deploy panel writing `deploy_config.json` and mutating `_config.yml`.
 
 ## Testing & QA
 
 - **No test suite and no linters** — the build is the gate.
-- Verification workflow: `npm run build` (must exit 0; CI enforces the same), then `npm run server` and eyeball `localhost:4000` (post rendering, images from asset folders, search via `/search.json`).
+- Verification workflow: `npx hexo stellar doctor` (must PASS, 0 warnings) → `npm run build` (exit 0) → spot-check `public/` (home default menu, `/blog/categories|tags|archives/`, `/about/`, `/friends/`, `/settings/`, post page mermaid+mathjax, `/search.json`, `atom.xml`, `404.html`) → `npm run server` and eyeball `localhost:4000` + `/pro`.
 - `hexo clean` before builds if incremental generation behaves oddly (stale `db.json` cache).
 
 ## Gotchas
 
 - `npm run deploy` is a dead end (`deploy.type: ''`); CI is the only deploy path.
-- Theme version drift: `package.json` says `hexo-theme-stellar ^1.33.1`, submodule HEAD is v1.29.1 — the submodule is the source of truth.
-- `themes/stellar` shows as dirty in `git status` — that is expected (the two local overrides), not an accident.
+- **Interrupted builds leave stale state**: killing a `hexo generate` mid-run (e.g. SIGTERM) leaves `source/_data/caches/images_metadata.json.lock` behind; subsequent builds log `Image metadata is locked … skipped` and the Runtime's image metadata goes stale. Fix: `rm -rf source/_data/caches` (gitignored, disposable), then clean-build. Overlapping builds can also interleave writes to `public/` — when output looks inexplicably wrong, verify with a single clean build before debugging config.
+- v2 validates config/front-matter against a schema; unknown keys are **ignored with warnings** (not errors) — watch build output for `已忽略 N 项不支持的配置`.
 - `source/_posts/weekly-01.md` contains a broken link with smart quotes inside the URL (`[醫學博物館]("https://…")`).
-- The workspace is mid-restructure (see Notebooks): untracked `_data/notebooks/*.yaml` reference `base_dir`s with no matching source dirs yet, and a staged rename is missing its target file. Don't resolve these as errors.
+- `hexo-theme-stellar-docs/` and `theme-user-guide.md` describe **v1**; for v2 behavior read the npm package source (`node_modules/hexo-theme-stellar/`) and https://xaoxuu.com/wiki/stellar/ .

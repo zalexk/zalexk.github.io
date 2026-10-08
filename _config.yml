@@ -24,9 +24,9 @@ pretty_urls:
 # Directory
 source_dir: source
 public_dir: public
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
+tag_dir: blog/tags
+archive_dir: blog/archives
+category_dir: blog/categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
@@ -54,6 +54,10 @@ highlight:
   tab_replace: ''
   wrap: true
   hljs: false
+  # mermaid 围栏不做语法高亮，保持 <code class="mermaid"> 原样，
+  # 由 Stellar v2 Runtime 的 diagrams 扩展（selector: .mermaid）接管渲染
+  exclude_languages:
+    - mermaid
 prismjs:
   preprocess: true
   line_number: true
