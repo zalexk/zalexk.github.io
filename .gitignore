@@ -42,3 +42,5 @@ theme-user-guide.md
 hexo-theme-stellar-docs/
 # Stellar v2 Runtime 缓存（图片元数据等）
 source/_data/caches/
+obsidian-plugin/
+source/_drafts/

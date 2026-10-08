@@ -1,8 +1,8 @@
 ---
 title: 【雙周回顧】無所事事的兩周
 date: 2025-05-27 00:37:24
-tags: 週報
-categories: [週報]
+tags: [生活, 周报]
+categories: [周报]
 ---
 
 > **摘要**
