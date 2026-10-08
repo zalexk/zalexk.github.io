@@ -1,6 +1,5 @@
-# Stellar v2 主题配置（2026-10-08 迁移，同日改为「跟随最新版默认 UI」策略）
-# 原则：只覆盖站点身份与内容必需项，其余全部继承 node_modules/hexo-theme-stellar/_config.yml 默认值。
-# v2 默认：左栏七项菜单（博客/分类/标签/专栏/归档/友链/关于）、card 外观预设、reveal 动画开、系统字体。
+# Stellar v2 主题配置（2026-10-08 迁移；2026-10-09 起外观仿 xaoxuu 文档站，字体保留霞鹜文楷）
+# 原则：只覆盖站点身份、内容必需项与外观差异点，其余继承 node_modules/hexo-theme-stellar/_config.yml 默认值。
 
 # 左栏品牌（站点身份；name 为 null 时自动继承 Hexo title「ZalexK」）
 leftbar:
@@ -15,3 +14,44 @@ features:
     provider: mathjax
   diagrams:
     provider: mermaid
+  # 阅读增强（外观指南推荐配置；reveal 各值即默认值，显式写出便于后续微调）
+  card_hover:
+    spotlight: true
+    tilt: true
+  reveal:
+    enabled: true
+    duration: 800
+    interval: 200
+    distance: 8
+    blur: 4
+  lazy_loading:
+    transition: fade
+    auto_aspect_ratio: true
+
+# 霞鹜文楷字体加载（v1 inject.head → v2 head_begin）
+preconnect:
+  - https://fonts.gstatic.com
+  - https://fonts.googleapis.com
+inject:
+  head_begin: '<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">'
+
+# 外观：仿 xaoxuu 文档站（https://xaoxuu.com/wiki/stellar/）
+# 数值来源：2026-10-09 抓取其线上 main.css 反推（:root 变量），与 v2 默认 diff 后的差异点
+appearance:
+  colors:
+    # 主色：橙金（默认是青色 hsl(192 98% 55%)）
+    primary: hsl(40 96% 55%)
+    # 强调色（默认 hsl(14 100% 57%)）
+    accent: '#f60'
+    # 链接色：青绿（默认 hsl(207 90% 54%)）
+    link: hsl(166 66% 32%)
+  typography:
+    font_family:
+      # 全站字体：霞鹜文楷（保留原站字体，不走其衬线栈）
+      body: '"LXGW WenKai TC", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+      # 代码字体：霞鹜文楷等宽优先
+      code: '"LXGW WenKai Mono TC", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
+  backgrounds:
+    leftbar:
+      # 其左栏 surface 为纯色 var(--card)，无渐变
+      type: none
