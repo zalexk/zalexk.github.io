@@ -34,6 +34,15 @@ preconnect:
   - https://fonts.googleapis.com
 inject:
   head_begin: '<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">'
+  # Microsoft Clarity 站点统计（project_id: yvwwsorb1a）；Hexo 核心不消费 _config.yml 的 analytics 字段，必须由此注入
+  head_end: |
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yvwwsorb1a");
+    </script>
 
 # 外观：仿 xaoxuu 文档站（https://xaoxuu.com/wiki/stellar/）
 # 数值来源：2026-10-09 抓取其线上 main.css 反推（:root 变量），与 v2 默认 diff 后的差异点

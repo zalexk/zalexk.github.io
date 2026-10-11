@@ -105,10 +105,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: stellar
-analytics:
-    microsoft_clarity:
-        enable: true
-        project_id: rergjzgfa0
+# 站点统计：Hexo 核心不消费 analytics 字段，Clarity 脚本已注入在 _config.stellar.yml 的 inject.head_end
 
 
 # RSS feed
